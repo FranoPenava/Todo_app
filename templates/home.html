@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3>WHAT DO YOU NEED TO DO TODAY?</h3>
+        <form action = "{{ url_for('main.add_todo') }}" method = "POST" role = "form"> <input type="text" name = "add-todo" placeholder="Type some information!" autocomplete="off">
+            <button class="btn1" type="submit">ADD</button>
+            <div class="div">
+                <a href = "{{ url_for('main.delete_completed') }}" class="btn2" type="submit">DELETE COMPLETED</a>
+                <a href= "{{ url_for('main.delete_all') }}" class="btn2" type="submit">DELETE ALL</a>
+            </div>
+            <div class="div_link">
+            {% for todo in todos %}
+                <a href="{{ url_for('main.complete_todo', oid = todo._id) }}">
+                    <p class="content {% if todo.complete %} todo-completed {% endif %}">{{ todo.add }}</p>
+                </a>
+            {% endfor %}
+            </form>
+            </div>
+        </div>
+        
+
+    </div>
+    <footer>Copyright © 2021 Frano Penava</footer>
+
+</body>
+
+</html>
